@@ -1,0 +1,18 @@
+/*
+Midnight Messages
+
+Night 1
+
+Key: 
+P = Partner
+Y = You
+
+*/
+[BEGIN]
+P: Hey, honey, how was your day today?
+Y: It's been grueling. Work has been as it always has been, a cluster fuck close to setting off the fuse in me
+Y: It's dragging along, but I'm working through it. You've already made my day 100x better by texting me though!
+Y: It's been alright.
+P: Oh, I'm so sorry, honey. I know you have a lot on your plate. Maybe we should go out soon, to take your mind off things.
+P: 
+P: 

@@ -1,0 +1,3 @@
+[BEGIN]
+P: This is an error message.
+P: If you see this, you forgot to change the filepath for the message manager.

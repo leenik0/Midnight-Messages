@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections.Generic;
 public class DialogueSelector : MonoBehaviour
 {
     // Implements the Singleton Pattern
@@ -13,6 +13,23 @@ public class DialogueSelector : MonoBehaviour
         Instance = this;
     }
 
+    private void OnEnable()
+    {
+        if (!(Instance == null || Instance == this))
+        {
+            Destroy(this);
+            Debug.LogWarning("DialogueSelector Instance Destroyed");
+        }
+        Instance = this;
+    }
+
+    private void OnDisable()
+    {
+        Instance = null;
+    }
+
+
+
     public GameObject content;
     public SentMessage optionPrefab;
 
@@ -20,7 +37,7 @@ public class DialogueSelector : MonoBehaviour
     public GameObject bufferBottom;
 
 
-    public void ReceiveOptions(TextMessage[] options)
+    public void ReceiveOptions(List<TextMessage> options)
     { 
         foreach(TextMessage option in options)
         {

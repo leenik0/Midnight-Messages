@@ -1,11 +1,13 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 // a generic class that extends ScriptableObject to store message information
 public class TextMessage
 {
     [Header("Text Message Variables")]
     public string messageBody;
-    public TextMessage[] nextMessages;
+    public List<TextMessage> nextMessages = new();
 
     public TextMessage(string message)
     {
@@ -17,13 +19,18 @@ public class TextMessage
         this.messageBody = messageBody;
     }
 
-    public void SetNextMessages(TextMessage[] messages)
+    public void AddNextMessages(Collection<TextMessage> messages)
     {
-        nextMessages = messages;
+        nextMessages.AddRange(messages);
     }
 
-    public void SetNextMessages(TextMessage message)
+    public void AddNextMessages(TextMessage message)
     {
-        nextMessages = new TextMessage[] { message };
+        nextMessages.Add(message);
+    }
+
+    public override string ToString()
+    {
+        return messageBody;
     }
 }

@@ -10,8 +10,25 @@ public class MessageManager : MonoBehaviour
         if (!(Instance == null || Instance == this))
         {
             Destroy(this);
+            Debug.LogWarning("MessageManager Instance Destroyed");
         }
         Instance = this;
+    }
+
+
+    private void OnEnable()
+    {
+        if (!(Instance == null || Instance == this))
+        {
+            Destroy(this);
+            Debug.LogWarning("MessageManager Instance Destroyed");
+        }
+        Instance = this;
+    }
+
+    private void OnDisable()
+    {
+        Instance = null;
     }
 
     [Header("Destination Objects")]

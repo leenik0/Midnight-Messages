@@ -38,7 +38,8 @@ public class DialogueSelector : MonoBehaviour
 
 
     public void ReceiveOptions(List<TextMessage> options)
-    { 
+    {
+        //Debug.Log("Received Options");
         foreach(TextMessage option in options)
         {
             if(option == null) { continue; }

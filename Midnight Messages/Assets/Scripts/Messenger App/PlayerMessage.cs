@@ -19,7 +19,7 @@ public class PlayerMessage : TextMessage
     public PlayerMessage() : base ("This is a test player message.")
     {
         relationshipDeltaRegular = 0;
-        messageBodyRevealed = "Revealed message test.";
+        messageBodyRevealed = null;
         relationshipDeltaRevealed = 0;
     }
 
@@ -36,5 +36,19 @@ public class PlayerMessage : TextMessage
 
     // what the message turns into in the morning if the player is sleep deprived.
     public string messageBodyRevealed;
+
+    public void SetAdditionalAttributes(int regDelt = 0, int revealDelt = 0, string revealedBody = null)
+    {
+        relationshipDeltaRegular = regDelt;
+        relationshipDeltaRevealed = revealDelt;
+        messageBodyRevealed = revealedBody;
+
+        Debug.Log("Message Info: " + relationshipDeltaRegular + ", " + messageBody + ", " + relationshipDeltaRevealed + ", " + messageBodyRevealed);
+    }
+
+    public override string ToString()
+    {
+        return "Message Info: " + relationshipDeltaRegular + ", " + messageBody + ", " + relationshipDeltaRevealed + ", " + messageBodyRevealed;
+    }
 
 }

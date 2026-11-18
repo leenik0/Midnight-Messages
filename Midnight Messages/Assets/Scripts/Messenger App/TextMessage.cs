@@ -8,10 +8,12 @@ public class TextMessage
     [Header("Text Message Variables")]
     public string messageBody;
     public List<TextMessage> nextMessages = new();
+    //public TextMessage previousMessage = null;
 
-    public TextMessage(string message)
+    public TextMessage(string message/*, TextMessage previousMessage = null*/)
     {
-        messageBody = message;
+        messageBody = message != null ? message : "ERROR: NULL MESSAGE";
+        //this.previousMessage = previousMessage;
     }
 
     public void SetMessageBody(string messageBody)
@@ -23,6 +25,11 @@ public class TextMessage
     {
         nextMessages.AddRange(messages);
     }
+    
+    public void AddNextMessages(TextMessage[] messages)
+    {
+        nextMessages.AddRange(messages);
+    }
 
     public void AddNextMessages(TextMessage message)
     {
@@ -31,6 +38,16 @@ public class TextMessage
 
     public override string ToString()
     {
-        return messageBody;
+        return "MessageBody: " + messageBody + "; NextMessages Count: " + nextMessages.Count;
     }
+
+    //public TextMessage GetPreviousMessage()
+    //{
+    //    return previousMessage;
+    //}
+
+    //public void SetPreviousMessage(TextMessage message)
+    //{
+    //    previousMessage = message;
+    //}
 }

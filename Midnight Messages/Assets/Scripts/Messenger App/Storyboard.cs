@@ -120,8 +120,6 @@ public class Storyboard : MonoBehaviour
                 int.TryParse(textTokens[1], out relationshipDeltaRegular);
                 int.TryParse(textTokens[3], out relationshipDeltaRevealed);
 
-                Debug.Log("Message: " + textTokens[2] + "TextTokens 3: " + textTokens[3]);
-
                 newMessage = new PlayerMessage(textTokens[2], relationshipDeltaRegular, textTokens[4], relationshipDeltaRevealed);
                 messages.Add(newMessage);
                 break;

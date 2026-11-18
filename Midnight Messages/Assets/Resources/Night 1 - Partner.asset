@@ -1,0 +1,322 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78b3fd9154634ebdb8c8a48960b9a16a, type: 3}
+  m_Name: Night 1 - Partner
+  m_EditorClassIdentifier: Runtime::Subtegral.DialogueSystem.DataContainers.DialogueContainer
+  NodeLinks:
+  - BaseNodeGUID: 26ddd02e-406d-40b1-9d08-8930028febf4
+    PortName: Next
+    TargetNodeGUID: 29529425-2e3b-4daa-8cd3-32ad2e6e017d
+  - BaseNodeGUID: 29529425-2e3b-4daa-8cd3-32ad2e6e017d
+    PortName: Option 1
+    TargetNodeGUID: 5281db93-8fa4-4be6-9c1b-d9cf55c8d002
+  - BaseNodeGUID: 29529425-2e3b-4daa-8cd3-32ad2e6e017d
+    PortName: Option 2
+    TargetNodeGUID: 0566e388-1a55-4b06-b31e-e4bf33025b90
+  - BaseNodeGUID: 29529425-2e3b-4daa-8cd3-32ad2e6e017d
+    PortName: Option 3
+    TargetNodeGUID: ddbc48af-dda6-4c32-9c33-7e90347763b0
+  - BaseNodeGUID: 58bb37a2-3444-40f9-80e4-a87aef51a932
+    PortName: Option 1
+    TargetNodeGUID: ac5f6efb-4f8e-485e-864b-38217c1bc612
+  - BaseNodeGUID: 58bb37a2-3444-40f9-80e4-a87aef51a932
+    PortName: Option 2
+    TargetNodeGUID: ba77bc43-c761-45bc-b197-ad38a1dd8e7e
+  - BaseNodeGUID: 58bb37a2-3444-40f9-80e4-a87aef51a932
+    PortName: Option 3
+    TargetNodeGUID: 1b2e8e9e-95a0-47b0-adaf-0eea73a41900
+  - BaseNodeGUID: 0566e388-1a55-4b06-b31e-e4bf33025b90
+    PortName: Option 1
+    TargetNodeGUID: 5d1df169-c3f7-42b9-97ec-febe9891686e
+  - BaseNodeGUID: 5281db93-8fa4-4be6-9c1b-d9cf55c8d002
+    PortName: Option 1
+    TargetNodeGUID: 58bb37a2-3444-40f9-80e4-a87aef51a932
+  - BaseNodeGUID: 5d1df169-c3f7-42b9-97ec-febe9891686e
+    PortName: Option 1
+    TargetNodeGUID: 0bb02cc5-8c48-4d00-aa70-1d37c6e0467b
+  - BaseNodeGUID: ac5f6efb-4f8e-485e-864b-38217c1bc612
+    PortName: Option 1
+    TargetNodeGUID: 5e33cdcb-5e2f-4458-b32c-a244151aa0b3
+  - BaseNodeGUID: 1b2e8e9e-95a0-47b0-adaf-0eea73a41900
+    PortName: Option 1
+    TargetNodeGUID: 02b0256a-9967-44f7-8466-3c24756fd096
+  - BaseNodeGUID: 02b0256a-9967-44f7-8466-3c24756fd096
+    PortName: Option 2
+    TargetNodeGUID: 56f3f770-8a4c-4565-8037-b7ace030bf78
+  - BaseNodeGUID: 02b0256a-9967-44f7-8466-3c24756fd096
+    PortName: Option 1
+    TargetNodeGUID: 09f05685-f4ee-45e5-a510-5c547a98b5fd
+  - BaseNodeGUID: 5e33cdcb-5e2f-4458-b32c-a244151aa0b3
+    PortName: Option 2
+    TargetNodeGUID: 56f3f770-8a4c-4565-8037-b7ace030bf78
+  - BaseNodeGUID: 5e33cdcb-5e2f-4458-b32c-a244151aa0b3
+    PortName: Option 1
+    TargetNodeGUID: 09f05685-f4ee-45e5-a510-5c547a98b5fd
+  - BaseNodeGUID: 09f05685-f4ee-45e5-a510-5c547a98b5fd
+    PortName: Option 1
+    TargetNodeGUID: 1031afdb-9918-41e2-b923-9228868952aa
+  - BaseNodeGUID: 56f3f770-8a4c-4565-8037-b7ace030bf78
+    PortName: Option 1
+    TargetNodeGUID: 0ab34edf-abc5-464b-8ded-f96a17f3dab8
+  - BaseNodeGUID: 1031afdb-9918-41e2-b923-9228868952aa
+    PortName: Option 1
+    TargetNodeGUID: ffcf0bf8-80d2-41bc-8339-7798163c3a1f
+  - BaseNodeGUID: 1031afdb-9918-41e2-b923-9228868952aa
+    PortName: Option 2
+    TargetNodeGUID: 0c963605-b594-4463-8ae9-dfd1bf2dfeb7
+  - BaseNodeGUID: 0ab34edf-abc5-464b-8ded-f96a17f3dab8
+    PortName: Option 2
+    TargetNodeGUID: 0c963605-b594-4463-8ae9-dfd1bf2dfeb7
+  - BaseNodeGUID: 0ab34edf-abc5-464b-8ded-f96a17f3dab8
+    PortName: Option 1
+    TargetNodeGUID: ffcf0bf8-80d2-41bc-8339-7798163c3a1f
+  - BaseNodeGUID: 0c963605-b594-4463-8ae9-dfd1bf2dfeb7
+    PortName: Option 1
+    TargetNodeGUID: f5e8c273-7324-4acc-9a9d-940938374b71
+  - BaseNodeGUID: f7d66939-402c-444b-b423-91cc12be8f4f
+    PortName: Option 1
+    TargetNodeGUID: 53841529-a5a4-4cc5-a845-7d1c549e0963
+  - BaseNodeGUID: ffcf0bf8-80d2-41bc-8339-7798163c3a1f
+    PortName: Option 1
+    TargetNodeGUID: f7d66939-402c-444b-b423-91cc12be8f4f
+  - BaseNodeGUID: f5e8c273-7324-4acc-9a9d-940938374b71
+    PortName: Option 1
+    TargetNodeGUID: 314e502b-c9a0-49ec-9005-2ff6ac3720f3
+  - BaseNodeGUID: 314e502b-c9a0-49ec-9005-2ff6ac3720f3
+    PortName: Option 1
+    TargetNodeGUID: 4c0f810c-0257-4001-af86-a43fc52f65e9
+  - BaseNodeGUID: 4c0f810c-0257-4001-af86-a43fc52f65e9
+    PortName: Option 1
+    TargetNodeGUID: e11b1f99-0899-4dc7-807c-44e72a5795c7
+  - BaseNodeGUID: 4c0f810c-0257-4001-af86-a43fc52f65e9
+    PortName: Option 2
+    TargetNodeGUID: 7d898736-6ffd-46cb-9b44-9622947ef9e9
+  - BaseNodeGUID: 53841529-a5a4-4cc5-a845-7d1c549e0963
+    PortName: Option 1
+    TargetNodeGUID: e11b1f99-0899-4dc7-807c-44e72a5795c7
+  - BaseNodeGUID: 53841529-a5a4-4cc5-a845-7d1c549e0963
+    PortName: Option 2
+    TargetNodeGUID: 7d898736-6ffd-46cb-9b44-9622947ef9e9
+  - BaseNodeGUID: 7d898736-6ffd-46cb-9b44-9622947ef9e9
+    PortName: Option 1
+    TargetNodeGUID: 56c19702-323e-406a-94d3-f760fd9ae836
+  - BaseNodeGUID: 50ca5a1a-3139-4a9a-949f-0a96550e7915
+    PortName: Option 1
+    TargetNodeGUID: e1f17736-0f7f-407c-917f-a6d78d919569
+  - BaseNodeGUID: e11b1f99-0899-4dc7-807c-44e72a5795c7
+    PortName: Option 1
+    TargetNodeGUID: 50ca5a1a-3139-4a9a-949f-0a96550e7915
+  - BaseNodeGUID: e1f17736-0f7f-407c-917f-a6d78d919569
+    PortName: Option 1
+    TargetNodeGUID: 56c19702-323e-406a-94d3-f760fd9ae836
+  - BaseNodeGUID: 56c19702-323e-406a-94d3-f760fd9ae836
+    PortName: Option 1
+    TargetNodeGUID: e1664698-2da1-4f2c-8b20-fa36a154bb25
+  - BaseNodeGUID: e1664698-2da1-4f2c-8b20-fa36a154bb25
+    PortName: Option 1
+    TargetNodeGUID: 12fdf1f5-2402-4e65-ad9f-6407bde60542
+  - BaseNodeGUID: 12fdf1f5-2402-4e65-ad9f-6407bde60542
+    PortName: Option 1
+    TargetNodeGUID: 86ffe8b6-d6a2-4994-9fcd-b73e30334f19
+  - BaseNodeGUID: ea411142-20f2-443d-a61b-d253f037a3f1
+    PortName: Option 1
+    TargetNodeGUID: 7b47bf69-385a-4ba4-9cdf-8605c0bb71a4
+  - BaseNodeGUID: 2cc6f96e-553a-47c0-a138-3910c1b569f5
+    PortName: Option 1
+    TargetNodeGUID: 7b47bf69-385a-4ba4-9cdf-8605c0bb71a4
+  - BaseNodeGUID: 7b47bf69-385a-4ba4-9cdf-8605c0bb71a4
+    PortName: Option 1
+    TargetNodeGUID: 8365ecd7-f973-4600-a5b5-e00722d32b80
+  - BaseNodeGUID: 7b47bf69-385a-4ba4-9cdf-8605c0bb71a4
+    PortName: Option 3
+    TargetNodeGUID: e8549d1e-92f9-434a-9d8d-610913c42f84
+  - BaseNodeGUID: 7b47bf69-385a-4ba4-9cdf-8605c0bb71a4
+    PortName: Option 2
+    TargetNodeGUID: 698cd769-5cb4-407d-bc07-595a1d291c4e
+  - BaseNodeGUID: 9754028f-c6e5-4682-9e9b-d092619324e5
+    PortName: Option 1
+    TargetNodeGUID: ac5f6efb-4f8e-485e-864b-38217c1bc612
+  - BaseNodeGUID: 9754028f-c6e5-4682-9e9b-d092619324e5
+    PortName: Option 2
+    TargetNodeGUID: ba77bc43-c761-45bc-b197-ad38a1dd8e7e
+  - BaseNodeGUID: 9754028f-c6e5-4682-9e9b-d092619324e5
+    PortName: Option 3
+    TargetNodeGUID: 1b2e8e9e-95a0-47b0-adaf-0eea73a41900
+  - BaseNodeGUID: 0bb02cc5-8c48-4d00-aa70-1d37c6e0467b
+    PortName: Option 1
+    TargetNodeGUID: ac5f6efb-4f8e-485e-864b-38217c1bc612
+  - BaseNodeGUID: 0bb02cc5-8c48-4d00-aa70-1d37c6e0467b
+    PortName: Option 2
+    TargetNodeGUID: ba77bc43-c761-45bc-b197-ad38a1dd8e7e
+  - BaseNodeGUID: 0bb02cc5-8c48-4d00-aa70-1d37c6e0467b
+    PortName: Option 3
+    TargetNodeGUID: 1b2e8e9e-95a0-47b0-adaf-0eea73a41900
+  - BaseNodeGUID: 86ffe8b6-d6a2-4994-9fcd-b73e30334f19
+    PortName: Option 2
+    TargetNodeGUID: 2cc6f96e-553a-47c0-a138-3910c1b569f5
+  - BaseNodeGUID: 86ffe8b6-d6a2-4994-9fcd-b73e30334f19
+    PortName: Option 1
+    TargetNodeGUID: ea411142-20f2-443d-a61b-d253f037a3f1
+  - BaseNodeGUID: 1a929359-4cd0-4566-887c-b05c0813ddca
+    PortName: Option 2
+    TargetNodeGUID: 56f3f770-8a4c-4565-8037-b7ace030bf78
+  - BaseNodeGUID: 1a929359-4cd0-4566-887c-b05c0813ddca
+    PortName: Option 1
+    TargetNodeGUID: 09f05685-f4ee-45e5-a510-5c547a98b5fd
+  - BaseNodeGUID: ddbc48af-dda6-4c32-9c33-7e90347763b0
+    PortName: Option 1
+    TargetNodeGUID: 9754028f-c6e5-4682-9e9b-d092619324e5
+  - BaseNodeGUID: ba77bc43-c761-45bc-b197-ad38a1dd8e7e
+    PortName: Option 1
+    TargetNodeGUID: 1a929359-4cd0-4566-887c-b05c0813ddca
+  DialogueNodeData:
+  - NodeGUID: 29529425-2e3b-4daa-8cd3-32ad2e6e017d
+    DialogueText: 'P: Hey, honey, how was your day today?'
+    Position: {x: 271.4286, y: 180.57143}
+  - NodeGUID: 58bb37a2-3444-40f9-80e4-a87aef51a932
+    DialogueText: 'P: Oh, I''m so sorry, honey. I know you have a lot on your plate.
+      Maybe we should go out soon, to take your mind off things.'
+    Position: {x: 1606.2858, y: -52}
+  - NodeGUID: 0566e388-1a55-4b06-b31e-e4bf33025b90
+    DialogueText: 'Y: [+1] It''s dragging along, but I''m working through it. You''ve
+      already made my day 100x better by texting me though!'
+    Position: {x: 706.2857, y: 180.57143}
+  - NodeGUID: 5281db93-8fa4-4be6-9c1b-d9cf55c8d002
+    DialogueText: 'Y: It''s been grueling. Work has been as it always has been, a
+      cluster fuck close to setting off the fuse in me'
+    Position: {x: 706.2857, y: 45.714287}
+  - NodeGUID: 5d1df169-c3f7-42b9-97ec-febe9891686e
+    DialogueText: 'P: Aww, you make my day better too <3'
+    Position: {x: 1618.2858, y: 180.57143}
+  - NodeGUID: ac5f6efb-4f8e-485e-864b-38217c1bc612
+    DialogueText: 'Y: [-1] Honestly, I don''t know if I''m feeling it. I already
+      have plans with co-workers to go out drinking tomorrow, 3 and I''ll probably
+      be busy for the rest of the week.'
+    Position: {x: 3398.8572, y: 45.714287}
+  - NodeGUID: 1b2e8e9e-95a0-47b0-adaf-0eea73a41900
+    DialogueText: 'Y: Yeah, I am. Sorry, I''m just tired. Been a long day. I''ll
+      have to think about it.'
+    Position: {x: 3398.8572, y: 350.85715}
+  - NodeGUID: 02b0256a-9967-44f7-8466-3c24756fd096
+    DialogueText: 'P: That''s great! Where do you think we should go?'
+    Position: {x: 4674.857, y: 350.85715}
+  - NodeGUID: 5e33cdcb-5e2f-4458-b32c-a244151aa0b3
+    DialogueText: 'P: Oh, ok, so I give you a third chance to pick your disheveled
+      self up, and this is the respect I get. The same shit over and over every time.'
+    Position: {x: 4689.714, y: 45.714287}
+  - NodeGUID: 09f05685-f4ee-45e5-a510-5c547a98b5fd
+    DialogueText: 'Y: [+1] Wait, we should go to the fancy restaurant.'
+    Position: {x: 6134.857, y: 45.714287}
+  - NodeGUID: 56f3f770-8a4c-4565-8037-b7ace030bf78
+    DialogueText: 'Y: [-1] Actually, I can''t go.  I realized the new ''Call of Deity:
+      Modern Gods'' came out. I''ve been dying to play. We can go out another day.'
+    Position: {x: 6134.857, y: 205.14285}
+  - NodeGUID: 1031afdb-9918-41e2-b923-9228868952aa
+    DialogueText: 'P: I''d love that! You remember I wanted to go to that place!
+      I can''t wait to try the scallops.'
+    Position: {x: 7184, y: 45.714287}
+  - NodeGUID: 0ab34edf-abc5-464b-8ded-f96a17f3dab8
+    DialogueText: 'P: Yea, we need to find a date that''s better aligned for us.'
+    Position: {x: 7184, y: 205.14285}
+  - NodeGUID: 0c963605-b594-4463-8ae9-dfd1bf2dfeb7
+    DialogueText: 'Y: It''s starting to get late now. Maybe we should start heading
+      to bed?'
+    Position: {x: 8175.428, y: 192}
+  - NodeGUID: f7d66939-402c-444b-b423-91cc12be8f4f
+    DialogueText: 'P: Oh, wow, you do like me.'
+    Position: {x: 8786.286, y: 45.714287}
+  - NodeGUID: ffcf0bf8-80d2-41bc-8339-7798163c3a1f
+    DialogueText: 'Y: [+1] Oh, I never got to ask you how your day was?'
+    Position: {x: 8175.428, y: 45.714287}
+  - NodeGUID: f5e8c273-7324-4acc-9a9d-940938374b71
+    DialogueText: 'P: Well, no, silly. Remember I wake up later than you. :)'
+    Position: {x: 8735.429, y: 192}
+  - NodeGUID: 314e502b-c9a0-49ec-9005-2ff6ac3720f3
+    DialogueText: 'P: I still got a bit more energy before we leave this night.'
+    Position: {x: 9201.144, y: 192}
+  - NodeGUID: 4c0f810c-0257-4001-af86-a43fc52f65e9
+    DialogueText: "P: Since you forgot, let me tell you about my day. Well, my day
+      was swell\u2014exceptttt"
+    Position: {x: 9664.571, y: 192}
+  - NodeGUID: 53841529-a5a4-4cc5-a845-7d1c549e0963
+    DialogueText: "P: Remembering the bare minimum of what should've been asked towards
+      the beginning of this conversation. Thank you, sweetie. Well, my day was swell\u2014exceptttt"
+    Position: {x: 9105.715, y: 45.714287}
+  - NodeGUID: 7d898736-6ffd-46cb-9b44-9622947ef9e9
+    DialogueText: 'Y: Sure, whatever. Well, what''s the exception?'
+    Position: {x: 10733.715, y: 192}
+  - NodeGUID: 50ca5a1a-3139-4a9a-949f-0a96550e7915
+    DialogueText: 'Y: Well? Except what?'
+    Position: {x: 11065.715, y: 45.714287}
+  - NodeGUID: e11b1f99-0899-4dc7-807c-44e72a5795c7
+    DialogueText: 'Y: [-1] Yeah, yeah. I know. '
+    Position: {x: 10733.715, y: 45.714287}
+  - NodeGUID: e1f17736-0f7f-407c-917f-a6d78d919569
+    DialogueText: 'P: Wow, rude. '
+    Position: {x: 11429.715, y: 45.714287}
+  - NodeGUID: 56c19702-323e-406a-94d3-f760fd9ae836
+    DialogueText: 'P: Well, the exception is, after work, I had decided to text this
+      quite below-average-looking fellow. And they decided to text me back, and so
+      rudely forgot to ask about my day, so late into the conversation.'
+    Position: {x: 11666.286, y: 142.85715}
+  - NodeGUID: e1664698-2da1-4f2c-8b20-fa36a154bb25
+    DialogueText: 'Y: Cute.'
+    Position: {x: 13144.571, y: 142.85715}
+  - NodeGUID: 12fdf1f5-2402-4e65-ad9f-6407bde60542
+    DialogueText: 'Y: [+1] I''m being serious. How was your day? I genuinely care.'
+    Position: {x: 13380.571, y: 142.85715}
+  - NodeGUID: ea411142-20f2-443d-a61b-d253f037a3f1
+    DialogueText: 'Y: [-1] What, how is that good? You deserve that promotion '
+    Position: {x: 14722.857, y: 21.714287}
+  - NodeGUID: 2cc6f96e-553a-47c0-a138-3910c1b569f5
+    DialogueText: 'Y: [+1] Really? How have you not gotten it yet? You should be
+      at the top of that list!'
+    Position: {x: 14722.857, y: 201.71428}
+  - NodeGUID: 7b47bf69-385a-4ba4-9cdf-8605c0bb71a4
+    DialogueText: 'P: Thank you so much, sweetie! It was extremely competitive, but
+      I pushed through! Can''t wait to see where this takes us! Anyways, I''m beat.
+      I''ll talk to you tomorrow. Good night :)'
+    Position: {x: 15499.429, y: 104}
+  - NodeGUID: 698cd769-5cb4-407d-bc07-595a1d291c4e
+    DialogueText: 'Y: [+1] Good night'
+    Position: {x: 16824.572, y: 104}
+  - NodeGUID: e8549d1e-92f9-434a-9d8d-610913c42f84
+    DialogueText: 'Y: [-1] Night'
+    Position: {x: 16824.572, y: 249.7143}
+  - NodeGUID: 9754028f-c6e5-4682-9e9b-d092619324e5
+    DialogueText: 'P: Work caught up again? Are you sure you''re ok? We can go out
+      if you need to.'
+    Position: {x: 1618.2858, y: 353.7143}
+  - NodeGUID: 0bb02cc5-8c48-4d00-aa70-1d37c6e0467b
+    DialogueText: 'P: I also haven''t had the best day. The only thing I could think
+      about today was you. I was thinking we could go out tomorrow'
+    Position: {x: 2010.2858, y: 157.14285}
+  - NodeGUID: 86ffe8b6-d6a2-4994-9fcd-b73e30334f19
+    DialogueText: 'P: My day was good. I''m still waiting on that promotion I was
+      supposed to get by now.  :)'
+    Position: {x: 14029.144, y: 142.85715}
+  - NodeGUID: 1a929359-4cd0-4566-887c-b05c0813ddca
+    DialogueText: 'P: Actually, I just got a text from my boss. I need to work tomorrow.'
+    Position: {x: 4674.857, y: 205.14285}
+  - NodeGUID: ddbc48af-dda6-4c32-9c33-7e90347763b0
+    DialogueText: 'Y: [-1] It''s been alright. '
+    Position: {x: 706.2857, y: 302.2857}
+  - NodeGUID: ba77bc43-c761-45bc-b197-ad38a1dd8e7e
+    DialogueText: 'Y: [+1] Yeah, I''d love to! While I enjoy the company of coworkers,
+      I deserve some affection from time to time with you, rather than being the
+      butt of the joke with them.'
+    Position: {x: 3398.8572, y: 205.14285}
+  - NodeGUID: 8365ecd7-f973-4600-a5b5-e00722d32b80
+    DialogueText: 'Y: [+2] Good night :)'
+    Position: {x: 16824.572, y: -26.285715}
+  ExposedProperties: []
+  CommentBlockData: []

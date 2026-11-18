@@ -9,7 +9,11 @@ public class DialogueOption : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        sentMessage = GetComponentInParent<SentMessage>();
+        sentMessage = GetComponentInParent<SentMessage>(true);
+        if (sentMessage == null)
+        {
+            sentMessage = GetComponentInChildren<SentMessage>(true);
+        }
     }
 
     public void Click()

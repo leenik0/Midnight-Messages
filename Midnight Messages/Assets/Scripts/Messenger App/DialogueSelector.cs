@@ -12,6 +12,8 @@ public class DialogueSelector : MonoBehaviour
             Destroy(this);
         }
         Instance = this;
+
+        ClearOptions();
     }
 
     private void OnEnable()
@@ -41,7 +43,7 @@ public class DialogueSelector : MonoBehaviour
 
     void Start()
     {
-        ClearOptions();
+        
     }
 
     public void ReceiveOptions(List<TextMessage> choices)

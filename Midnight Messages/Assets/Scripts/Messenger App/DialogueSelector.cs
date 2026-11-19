@@ -53,10 +53,11 @@ public class DialogueSelector : MonoBehaviour
         //    SentMessage sentMessage = Instantiate(optionPrefab, content.transform);
         //    sentMessage.SetMessageProperties(choice, false);
         //}
-
-        for(int i = 0; i < 3 && i < choices.Count; ++i)
+        StopAllCoroutines();
+        for (int i = 0; i < 3 && i < choices.Count; ++i)
         {
             SentMessage optionChild = options[i].transform.GetChild(0).GetComponent<SentMessage>();
+            
             StartCoroutine(SetProperties(optionChild, choices[i], false));
             
             options[i].SetActive(true); // make the icon visible

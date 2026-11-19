@@ -13,6 +13,8 @@ public class SentMessage : MonoBehaviour
     public TMP_Text textComp;
     public Image imageComp;
 
+    private float initialRectHeight;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,6 +24,8 @@ public class SentMessage : MonoBehaviour
 
         rect = GetComponent<RectTransform>();
         if(rect == null) { rect = ((RectTransform)(transform)); }
+
+        initialRectHeight = ((RectTransform)transform).rect.height;
     }
 
     // Update is called once per frame
@@ -61,8 +65,17 @@ public class SentMessage : MonoBehaviour
         RectTransform imageRectTransform = ((RectTransform)(imageComp.transform));
         if(textComp.textInfo.lineCount > 1)
         {
-            // adjust height of bubble so the text fits
-            ((RectTransform)transform).sizeDelta = new Vector2(((RectTransform) transform).rect.width, ((RectTransform)transform).rect.height + 0.05f * (textComp.textInfo.lineCount - 1));
+            if(GetComponentInChildren<DialogueOption>() || GetComponentInParent<DialogueOption>())
+            {
+                // hehe i hate this
+                ((RectTransform)transform).sizeDelta = new Vector2(((RectTransform) transform).rect.width, initialRectHeight + 0.05f * (textComp.textInfo.lineCount - 1));
+            }
+            else
+            {
+                // adjust height of bubble so the text fits
+                ((RectTransform)transform).sizeDelta = new Vector2(((RectTransform) transform).rect.width, ((RectTransform)transform).rect.height + 0.05f * (textComp.textInfo.lineCount - 1));
+            }
+
         }
         else
         {

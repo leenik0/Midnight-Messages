@@ -5,6 +5,7 @@ public class MessageManager : MonoBehaviour
 {
     // Implements the Singleton Pattern
     public static MessageManager Instance { get; private set; }
+    public RelationshipBehavior relationshipBehavior;
     void Awake()
     {
         if (!(Instance == null || Instance == this))
@@ -46,7 +47,7 @@ public class MessageManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     //public void GiveOptions(PlayerMessage[] options)
@@ -56,18 +57,26 @@ public class MessageManager : MonoBehaviour
 
     public void SendTextMessage(TextMessage message, bool align = true)
     {
-        if(message == null)
+        if (message == null)
         {
-            message = Random.Range(0,10) % 2 == 0 ? new PlayerMessage() : new PartnerMessage();
+            message = Random.Range(0, 10) % 2 == 0 ? new PlayerMessage() : new PartnerMessage();
         }
-        
+
         //TODO: add an animation for the typing partner messages
 
 
         SentMessage sentMessage = Instantiate(messagePrefab, scrollContent.transform);
         sentMessage.SetMessageProperties(message, align);
+        if (message.GetType() == typeof(PlayerMessage))
+        {
+            relationshipBehavior.alterStatusValue((message as PlayerMessage).relationshipDeltaRegular);
+            Debug.Log("Relationship status: " + relationshipBehavior.getStatus());
+        } else
+        {
+            Debug.Log("not a playermessage IDIOT");
+        }
 
-        if(bufferBottom)
+        if (bufferBottom)
         {
             bufferBottom.transform.SetAsLastSibling();
         }

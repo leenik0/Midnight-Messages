@@ -1,6 +1,8 @@
+using Subtegral.DialogueSystem.DataContainers;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 
 
@@ -37,112 +39,215 @@ public class Storyboard : MonoBehaviour
 
     TextMessage rootMessage;
     TextMessage lastSentMessage;
-
-    public string filepath = "Assets/txt files/error.txt";
-
+    
+    [SerializeField] private DialogueContainer dialogue;
     private List<TextMessage> messages = new List<TextMessage>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //filepath = Path.GetFullPath(filepath);
-
-        if(!File.Exists(filepath))
-        {
-            Debug.Log("This file doesn't exist.");
-            return;
-        }
-
-        ParseTxtFile();
         FillMessages();
         SendInitialMessage();
     }
 
-    private List<TextMessage> ParseTxtFile()
-    {
-         
-        bool begun = false;
-        using (StreamReader sr = File.OpenText(filepath))
-        {
-            string s;
-            while ((s = sr.ReadLine()) != null)
-            {
-                if (s == "[BEGIN]") { begun = true; continue; } // indicates the messages section of the night has begun
-                if (begun == false) { continue; }
-
-                string startToken = s.Substring(0, 3);
-
-                if(startToken.Length < 3) { continue; }
-
-                switch (startToken)
-                {
-                    case "P: ": // partner indicator
-                        //Debug.Log("Partner: " + s.Substring(3));
-                        messages.Add(new PartnerMessage(s.Substring(3)));
-                        break;
-                    case "Y: ": // player indicator
-                        //Debug.Log("You: " + s.Substring(3));
-                        messages.Add(new PlayerMessage(s.Substring(3)));
-                        break;
-                    default:
-                        Debug.Log("Invalid Start Token: '" + startToken + "'");
-                        break;
-                
-                }
-
-            }
-        }
-
-        return messages;
-    }
 
     private void FillMessages()
     {
-        //rootMessage = new PartnerMessage("Hey babe, how's it going?");
+        var narrativeData = dialogue.NodeLinks.First();
 
+        CreateChildNodeMessage(narrativeData.TargetNodeGUID);
 
-        //PlayerMessage p1;
-        //PlayerMessage p2;
-        //PlayerMessage p3;
+        rootMessage = messages[messages.Count - 1];
 
-        //rootMessage.SetNextMessages(new PlayerMessage[] {p1 = new PlayerMessage("It's going alright, how are you doing?"), p2 = new PlayerMessage("A bit tired, but fine overall"), p3 = new PlayerMessage("Stop texting me..."), });
-
-        //PartnerMessage partner;
-
-        //p1.SetNextMessages(partner = new PartnerMessage("I'm doing well. I'll be home soon!"));
-        //partner.SetNextMessages(new PlayerMessage[] { new PlayerMessage("Great! See you then!"), new PlayerMessage("I'll be here."), new PlayerMessage("Nice")});
-
-        //p2.SetNextMessages(partner = new PartnerMessage("Mood."));
-        //partner.SetNextMessages(new PartnerMessage[] {partner = new PartnerMessage("Can I get you anything on my way home?")});
-        //partner.SetNextMessages(new PlayerMessage[] {new PlayerMessage("Pickle chips please!"), new PlayerMessage("Nope! I'm all good."), new PlayerMessage("You're plenty for me <3"), });
-
-        //p3.SetNextMessages(partner = new PartnerMessage("Ok."));
-        //partner.SetNextMessages(new PartnerMessage[] { new("Maybe we should see other people...") });
-
-        if(messages.Count == 0)
-        {
-            rootMessage = new PartnerMessage("[ERROR] There are no messages available.");
-            return;
-        }
-
-        rootMessage = messages[0];
-
-        Debug.Log("Message " + 0 + ": " + messages[0]);
-
-        Debug.Log("Messages Length: " + messages.Count);
-
-        for(int i = 1; i < messages.Count; ++i)
-        {
-            Debug.Log("Message " + i + ": " + messages[i]);
-                
-            messages[i - 1].AddNextMessages(messages[i]);
-
-        }
-
-
-
+        //foreach(TextMessage message in rootMessage.nextMessages)
+        //{
+        //    Debug.Log(message);
+        //}
     }
 
+
+    /**
+     * 1. Depth First Search Recursively
+     * 2. Memoize created Messages
+     * 3. Add children nodes as nextMessages
+     */
+    private void CreateChildNodeMessage(string NodeGUID)
+    {
+        var node = dialogue.DialogueNodeData.Find(x => x.NodeGUID == NodeGUID);
+        var childNodes = dialogue.NodeLinks.Where(x => x.BaseNodeGUID == NodeGUID);
+
+        //Debug.Log("Node Text: " + node.DialogueText);
+
+        foreach(var child in childNodes)
+        {
+            //Debug.Log("Child Node Text: " + dialogue.DialogueNodeData.Find(x => x.NodeGUID == child.TargetNodeGUID).DialogueText);
+            CreateChildNodeMessage(child.TargetNodeGUID);
+        }
+
+        /**
+         * textTokens Index:
+         * 0. Sender Identifier ("P: ", "Y: ", etc.)
+         * 1. Relationship Modifier ([+1], [-1], etc.)
+         * 2. Message Body Regular ("Hey sweetie! I miss you!")
+         * // <- Revealed Message identifier
+         * 3. Revealed Relationship Modifier ([+1], [-1], etc.)
+         * 4. Message Body Revealed ("I hate you and want you to die...")
+         * 
+         */
+        string[] textTokens = ParseDialogueText(node.DialogueText);
+
+        // checking if node already exists
+        foreach(TextMessage message in messages)
+        {
+            if (message.messageBody == node.DialogueText.Substring(3))
+            {
+                return;
+            }
+        }
+
+        TextMessage newMessage = null;
+        // creating the respective message
+        switch (textTokens[0])
+        {
+            case "P: ": // partner indicator
+                        //Debug.Log("Partner: " + s.Substring(3));
+                newMessage = new PartnerMessage(textTokens[2]);
+                messages.Add(newMessage);
+                break;
+            case "Y: ": // player indicator
+                int relationshipDeltaRegular = 0;
+                int relationshipDeltaRevealed = 0;
+                int.TryParse(textTokens[1], out relationshipDeltaRegular);
+                int.TryParse(textTokens[3], out relationshipDeltaRevealed);
+
+                newMessage = new PlayerMessage(textTokens[2], relationshipDeltaRegular, textTokens[4], relationshipDeltaRevealed);
+                messages.Add(newMessage);
+                break;
+            case "S: ": // skip token for when multiple paths converge into three new options
+                foreach (var child in childNodes)
+                {
+                    CreateChildNodeMessage(child.TargetNodeGUID);
+                }
+                break;
+            default:
+                Debug.Log("Invalid Start Token: '" + textTokens[0] + "'");
+                newMessage = new PartnerMessage("This shouldn't happen.");
+                messages.Add(newMessage);
+                break;
+
+        }
+
+        // assigning the nextMessage nodes
+        foreach (var child in childNodes)
+        {
+            TextMessage next = GetMessageFromID(child.TargetNodeGUID);
+            if (next != null && newMessage != null)
+            {
+                newMessage.AddNextMessages(next);
+            }
+        }
+    }
+
+    private TextMessage GetMessageFromID(string NodeGUID)
+    {
+        TextMessage returnMessage = null;
+
+        string text = dialogue.DialogueNodeData.Find(x => x.NodeGUID == NodeGUID).DialogueText;
+
+        foreach(TextMessage message in messages)
+        {
+            if(message.messageBody == ParseDialogueText(text)[2])
+            {
+                returnMessage = message;
+                break;
+            }
+        }
+
+        return returnMessage;
+    }
+
+    private string[] ParseDialogueText(string text)
+    {
+        string[] tokens = new string[5];
+
+        /**
+         * Index:
+         * 0. Sender Identifier ("P: ", "Y: ", etc.)
+         * 1. Relationship Modifier ([+1], [-1], etc.)
+         * 2. Message Body Regular ("Hey sweetie! I miss you!")
+         * // <- Revealed Message identifier
+         * 3. Revealed Relationship Modifier ([+1], [-1], etc.)
+         * 4. Message Body Revealed ("I hate you and want you to die...")
+         * 
+         */
+
+        if(text.Length < 3)
+        {
+            tokens[0] = "ERR";
+            return tokens;
+        }
+
+        // Sender Identifier
+        tokens[0] = text.Substring(0, 3);
+        
+        text = text.Substring(3); // cut off first token
+
+        int modifierStartIndex = text.IndexOf("[");
+        int modifierEndIndex = text.IndexOf("]");
+        int revealedTokenIndex = text.IndexOf("//");
+        
+        // Relationship Modifier
+        if(modifierStartIndex != -1 && modifierEndIndex != -1 && ((revealedTokenIndex == -1) || (modifierEndIndex < revealedTokenIndex))) // if modifier token exists, and is before revealed token ([+X] before //) if revealed exists
+        {
+            //Debug.Log("Modifier: " + text.Substring(modifierStartIndex + 1, modifierEndIndex - 1));
+
+            tokens[1] = text.Substring(modifierStartIndex + 1, modifierEndIndex - 1); // just get the number
+            text = text.Remove(text.IndexOf(tokens[1]) - 1, tokens[1].Length + 2); // for some reason it's start index and count, not start index and end index
+
+            revealedTokenIndex = text.IndexOf("//");
+        }
+        else
+        {
+            tokens[1] = null;
+        }
+
+        
+        // Message Body Regular
+        if (revealedTokenIndex != -1)
+        {
+            tokens[2] = text.Substring(0, revealedTokenIndex).Trim();
+            text = text.Substring(revealedTokenIndex + 2); // gets rid of everything before // and also the //
+        }
+        else
+        {
+            tokens[2] = text.Trim();
+
+            tokens[3] = null;
+            tokens[4] = null;
+
+            return tokens;
+        }
+
+        // Revealed Relationship Modifier
+        modifierStartIndex = text.IndexOf("[");
+        modifierEndIndex = text.IndexOf("]");
+
+        if(modifierStartIndex != -1 && modifierEndIndex != -1)
+        {
+            tokens[3] = text.Substring(modifierStartIndex + 1, modifierEndIndex - 2);
+            text = text.Remove(text.IndexOf(tokens[3]) - 1, tokens[3].Length + 2);
+        }
+        else
+        {
+            tokens[3] = null;
+        }
+
+        //Message Body Revealed
+        tokens[4] = text.Trim(); // everything else lmao
+
+
+        return tokens;
+    }
     private void SendInitialMessage()
     {
         lastSentMessage = rootMessage;
@@ -151,39 +256,29 @@ public class Storyboard : MonoBehaviour
 
     public void SendNextMessages()
     {
-        switch (lastSentMessage)
+        List<TextMessage> receiveOptions = new();
+        foreach (TextMessage nextMessage in lastSentMessage.nextMessages)
         {
+            switch (nextMessage)
+            {
+                case PartnerMessage:
+                    lastSentMessage = nextMessage;
+                    MessageManager.Instance.SendTextMessage(nextMessage);
+                    break;
 
-            case PlayerMessage:
-                PlayerMessage newMessage = lastSentMessage as PlayerMessage;
-                if (newMessage.nextMessages == null || newMessage.nextMessages.Count == 0 || newMessage.nextMessages[0] == null) { Debug.Log("No messages left"); lastSentMessage = null; return; }
+                case PlayerMessage:
+                    receiveOptions.Add(nextMessage);
+                    break;
 
-                lastSentMessage = newMessage.nextMessages[0];
-                MessageManager.Instance.SendTextMessage(newMessage.nextMessages[0]);
-                
-                break;
-            case PartnerMessage:
-                PartnerMessage message = lastSentMessage as PartnerMessage;
-                
-                if (message.nextMessages == null || message.nextMessages.Count == 0 || message.nextMessages[0] == null) { Debug.Log("No messages left");  lastSentMessage = null; return; }
-                
-                if(message.nextMessages.Count == 1) 
-                { 
-                    lastSentMessage = message.nextMessages[0];
-                    MessageManager.Instance.SendTextMessage(message.nextMessages[0]); 
-                }
-                else
-                {
-                    DialogueSelector.Instance.ReceiveOptions(message.nextMessages);
-                }
-                
-                break;
-            default:
-                Debug.LogWarning("Um... this isn't supposed to happen twin");
-                break;
-        
+
+            }
+
         }
 
+        if (receiveOptions.Count != 0)
+        {
+            DialogueSelector.Instance.ReceiveOptions(receiveOptions);
+        }
     }
 
     public void SetLastMessage(TextMessage message)

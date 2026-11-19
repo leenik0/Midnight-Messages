@@ -1,5 +1,6 @@
-using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 public class DialogueSelector : MonoBehaviour
 {
     // Implements the Singleton Pattern
@@ -11,6 +12,8 @@ public class DialogueSelector : MonoBehaviour
             Destroy(this);
         }
         Instance = this;
+
+        ClearOptions();
     }
 
     private void OnEnable()
@@ -31,19 +34,35 @@ public class DialogueSelector : MonoBehaviour
 
 
     public GameObject content;
+    public GameObject[] options = new GameObject[3];
     public SentMessage optionPrefab;
 
     // the game object that provides a buffer between the last sent message and the dialogue option bar
     public GameObject bufferBottom;
 
 
-    public void ReceiveOptions(List<TextMessage> options)
-    { 
-        foreach(TextMessage option in options)
+    void Start()
+    {
+        
+    }
+
+    public void ReceiveOptions(List<TextMessage> choices)
+    {
+        //Debug.Log("Received Options");
+        //foreach(TextMessage choice in choices)
+        //{
+        //    if(choice == null) { continue; }
+        //    SentMessage sentMessage = Instantiate(optionPrefab, content.transform);
+        //    sentMessage.SetMessageProperties(choice, false);
+        //}
+        StopAllCoroutines();
+        for (int i = 0; i < 3 && i < choices.Count; ++i)
         {
-            if(option == null) { continue; }
-            SentMessage sentMessage = Instantiate(optionPrefab, content.transform);
-            sentMessage.SetMessageProperties(option, false);
+            SentMessage optionChild = options[i].transform.GetChild(0).GetComponent<SentMessage>();
+            
+            StartCoroutine(SetProperties(optionChild, choices[i], false));
+            
+            options[i].SetActive(true); // make the icon visible
         }
 
         if(bufferBottom)
@@ -54,10 +73,15 @@ public class DialogueSelector : MonoBehaviour
 
     public void ClearOptions()
     {
-        foreach(Transform child in content.transform)
+        foreach(GameObject option in options)
         {
-            if(child.GetComponent<SentMessage>())
-                Destroy(child.gameObject);
+            option.SetActive(false);
         }
+    }
+
+    public IEnumerator SetProperties(SentMessage optionChild, TextMessage message, bool align)
+    {
+        yield return new WaitUntil(() => optionChild.gameObject.activeSelf);
+        optionChild.SetMessageProperties(message, align);
     }
 }

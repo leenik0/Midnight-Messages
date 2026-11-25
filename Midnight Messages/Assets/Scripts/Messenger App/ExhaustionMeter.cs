@@ -11,7 +11,7 @@ public class ExhaustionMeter : ScriptableObject
         return exhaustionStatus;
     }
 
-    public void alterStatus(int val)
+    public void adjustExhaustion(int val)
     {
         exhaustionStatus += val;
     }
